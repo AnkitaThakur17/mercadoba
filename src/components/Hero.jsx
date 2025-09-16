@@ -20,7 +20,7 @@ const Hero = () => {
           <input type="email" placeholder="Enter Email" />
           <label>Password</label>
           <input type="password" placeholder="Enter Password" />
-          <a href="#" className="forgot-password">
+          <a href="" className="forgot-password">
             Forgot Password?
           </a>
           <button className="login-btn">Login</button>
@@ -28,14 +28,14 @@ const Hero = () => {
           <p>Or login with</p>
           <button className="google-signin-btn">
             <img style={{width:50}}
-              src="/google.png"
+              src="/google1.png"
               alt="Google Logo"
             />
             Sign in with Google
           </button>
 
           <p className="signup-text">
-            You don't have an account? <a href="#">Sign Up</a>
+            You don't have an account? <a href="">Sign Up</a>
           </p>
         </form>
       </section>

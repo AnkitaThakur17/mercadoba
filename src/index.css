@@ -51,6 +51,7 @@
   font-size: 16px;
   border-radius: 10px;
   background-color: white;
+  color:#1a1a1a;
   border: none;
   outline: none;
 }
@@ -118,7 +119,7 @@
 
 .seller-signup-btn {
   background-color: #d83565;
-  border: none;
+  border:5px solid #d83565;
   padding: 10px 20px;
   border-radius: 25px;
   color: white;
@@ -206,15 +207,35 @@
   display:flex;
   align-items:center;
   flex-direction:row;
+  justify-content:center;
   justify-content:space-around;
- color:black;
+ color:rgb(54, 53, 53);
 }
 .end-section1{
   /* border:2px solid green; */
   width:33%;
   display:flex;
   align-items:center;
+  justify-content:center;
   flex-direction:column;
+}
+.footer{
+  padding:10px;
+  padding-inline:100px;
+  display:flex;
+  color:#1a1a1a;
+  align-items: center;
+  justify-content:space-between;
+}
+.footer-link{
+  display:flex;
+  gap:20px;
+}
+.footer-link a{
+  text-decoration:none;
+   color: #313131;
+   font-size:medium;
+   font-weight:bold;
 }
 body {
   margin: 0;
@@ -240,7 +261,7 @@ button {
   transition: border-color 0.25s;
 }
 
-@media (prefers-color-scheme: light) {
+@media (max-width: 900px) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -250,5 +271,28 @@ button {
   }
   button {
     background-color: #f9f9f9;
+  }
+  .hero-section {
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  .hero-form{
+    font-size:small;
+  }
+  .navbar .right-items{
+   display:none;
+  }
+  .end-section{
+    display:flex;
+    flex-direction:column;
+    font-size:smaller;
+  }
+  .footer{
+    font-size:x-small;
+    gap:50px;
+  }
+  .footer-link a{
+    font-size:xx-small;
   }
 }

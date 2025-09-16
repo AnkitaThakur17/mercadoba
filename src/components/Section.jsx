@@ -11,7 +11,7 @@ const Section = () => {
       </div>
       <div className="end-section1">
         <FontAwesomeIcon icon={faHeadphones} style={{ color: "#B197FC" ,fontSize: '32px'  }} />
-        <h2>24/7 Customer Service</h2>
+        <h3>24/7 Customer Service</h3>
         <p>Online top support<br/>
            +1 561 9875465<br/>
            abc@gmail.com
@@ -19,7 +19,7 @@ const Section = () => {
       </div>
       <div className="end-section1">
         <FontAwesomeIcon icon={faCreditCard} style={{ color: "#B197FC",fontSize: '32px' }} />
-        <h2>Secure Payment</h2>
+        <h3>Secure Payment</h3>
         <p>100% secure payment</p>
       </div>
     </div>
