@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -19,12 +20,12 @@ const Navbar = () => {
 </nav>
 <nav className='nav2'>
 <div className='nav-link'>
-<a href="/home" >Home</a>
-  <a href="/supermarket" >Supermarket</a>
-  <a href="/combo">Combo</a>
-  <a href="/shop" >Shop</a>
-  <a href="/store">Store</a>
-  <a href="/sell">Sell</a>
+<Link to="/home" >Home</Link>
+  <Link to="/supermarket" >Supermarket</Link>
+  <Link to="/combo">Combo</Link>
+  <Link to ="/shop" >Shop</Link>
+  <Link to="/store">Store</Link>
+  <Link to="/sell">Sell</Link>
 </div>
 </nav>
 </>

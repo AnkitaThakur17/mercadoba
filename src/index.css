@@ -13,11 +13,17 @@
 }
 .navbar {
   padding: 10px;
+  padding-inline:20px;
   /* border: 2px solid red; */
   background-color: #7d5798;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;  
+  width:100vw;          
+  /* width: 100%;  */
+  z-index: 1000; 
 }
 .nav2 {
   padding: 20px;
@@ -26,6 +32,10 @@
   display: flex;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   align-items: center;
+  position: fixed;
+  top: 80px;           /* Set this to height of your first navbar */
+  width: 100%;
+  z-index: 999;  
 }
 .nav-link {
   /* border:2px solid red; */
@@ -78,7 +88,7 @@
   height: 40px;
   border-radius: 50%;
   border: 2px solid white;
-  background-image: url("/public/download.png");
+  background-image: url("/download.png");
   background-size: cover;
   background-position: center;
 
@@ -110,6 +120,7 @@
   border-radius: 10px;
   width: 35%;
   text-align: center;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .seller-icon {
@@ -130,7 +141,8 @@
 .hero-form {
   background-color: white;
   color: #797878;
-  padding: 40px;
+  padding-block: 5px;
+  padding-inline:30px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -181,6 +193,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  /* width:50%; */
   color: #797878;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -200,6 +213,8 @@
   font-weight: bold;
 }
 .end-section{
+  min-height: auto;
+  padding: 40px;
   background-color: #F6F6F6;
   width:100%;
   padding:10px;
@@ -226,6 +241,7 @@
   color:#1a1a1a;
   align-items: center;
   justify-content:space-between;
+  position: relative; /* NOT fixed */
 }
 .footer-link{
   display:flex;
@@ -236,6 +252,18 @@
    color: #313131;
    font-size:medium;
    font-weight:bold;
+}
+.form-container {
+  margin: 50px auto;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  /* border-radius: 8px; */
+}
+
+.page-content {
+  padding-top: 250px; /* height of fixed navbar */
 }
 body {
   margin: 0;
