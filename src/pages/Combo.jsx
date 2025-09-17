@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 
 const Combo = () => {
   const {
@@ -7,8 +7,14 @@ const Combo = () => {
     handleSubmit,
     reset,
     watch,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({defaultValues: { hobbies: [{ name: '' }] }});
+
+    const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'hobbies'
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -21,14 +27,25 @@ const Combo = () => {
         <h2>Enter your name</h2>
 
         <input
-          {...register("name", {
-            required: "Name is required!",
+          {...register("Firstname", {
+            required: "Firstname is required!",
             minLength: {
-            value: 3,
-            message: "Name must be at least 3 characters long",
-          },
+              value: 3,
+              message: "first name must be at least 3 characters long",
+            },
           })}
-          placeholder="Enter name"
+          placeholder="Enter first name"
+        />
+
+        <input
+          {...register("Lastname", {
+            required: "Lastname is required!",
+            minLength: {
+              value: 3,
+              message: "Last name must be atleast 3 characters long",
+            },
+          })}
+          placeholder="Enter last name"
         />
 
         <input
@@ -42,6 +59,37 @@ const Combo = () => {
           type="email"
           placeholder="Enter email"
         />
+
+        <h3>Select Gender</h3>
+
+        <label>
+          <input
+            type="radio"
+            value="Male"
+            {...register('gender', { required: 'Gender is required' })}
+          />
+          Male
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="Female"
+            {...register('gender', { required: 'Gender is required' })}
+          />
+          Female
+        </label>
+
+        {fields.map((field, index) => (
+        <div key={field.id}>
+          <input 
+            {...register(`hobbies.${index}.name`, { required: 'Hobby name required' })}
+            placeholder={`Hobby #${index + 1}`}
+          />
+          <button style={{marginLeft:20}} type="button" onClick={() => remove(index)}>Remove</button>
+        </div>
+      ))}
+
         <input
           {...register("password", {
             required: "password is required",
@@ -55,14 +103,25 @@ const Combo = () => {
             validate: (value) =>
               value === watch("password") || "Passwords do not match",
           })}
+          placeholder="Confirm Password"
         />
-        {errors.name && <p style={{ color: "red" }}>{errors.name.message}</p>}
+        {/* {errors.Firstname && <p style={{ color: "red" }}>{errors.Firstname.message}</p>}
+        {errors.Lastname && <p style={{color:"red"}}> {errors.Lastname.message} </p>}
         {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
         {errors.confirmPassword && (
         <p style={{ color: "red" }}>{errors.confirmPassword.message}</p>
-        )}
+        )} */}
 
-        <button type="submit">Submit</button>
+        {/* Display all errors in a list */}
+        {Object.values(errors).length > 0 && (
+          <ul style={{ color: "red" }}>
+            {Object.values(errors).map((error, index) => (
+              <li key={index}>{error.message}</li>
+            ))}
+          </ul>
+        )}
+        <button style={{marginTop:10}}type="button" onClick={() => append({ name: '' })}>Add Hobby</button>
+        <button style={{marginTop:20}} type="submit">Submit</button>
       </form>
     </div>
   );
