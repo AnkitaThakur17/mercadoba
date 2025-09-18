@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const Home = () => {
@@ -6,6 +6,7 @@ const Home = () => {
     register,
     handleSubmit,
     reset,
+    setFocus,
     formState: { errors },
   } = useForm({
     mode: "onTouched",           // validate when field is touched
@@ -16,7 +17,19 @@ const Home = () => {
       phone: "9876543210",
     },
   });
- console.log("Current Errors:", errors); 
+
+  console.log("Current Errors:", errors);
+  
+  useEffect(() => {
+    if (errors.email) {
+      setFocus("email");
+    } else if (errors.password) {
+      setFocus("password");
+    } else if (errors.phone) {
+      setFocus("phone");
+    }
+  }, [errors, setFocus]);
+
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     reset();
