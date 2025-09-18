@@ -33,10 +33,14 @@ const Combo = () => {
               value: 3,
               message: "first name must be at least 3 characters long",
             },
+            maxLength:{
+              value: 8,
+              message: "first name could have maximum 8 characters only."
+            }
           })}
           placeholder="Enter first name"
         />
-
+          {errors.Firstname && <p style={{ color: "red" }}>{errors.Firstname.message}</p>}
         <input
           {...register("Lastname", {
             required: "Lastname is required!",
@@ -44,10 +48,14 @@ const Combo = () => {
               value: 3,
               message: "Last name must be atleast 3 characters long",
             },
+            maxLength:{
+              value: 8,
+              message: "Last name could have maximum 8 charaters only"
+            }
           })}
           placeholder="Enter last name"
         />
-
+        {errors.Lastname && <p style={{color:"red"}}> {errors.Lastname.message} </p>}
         <input
           {...register("email", {
             required: "Email is required",
@@ -59,9 +67,9 @@ const Combo = () => {
           type="email"
           placeholder="Enter email"
         />
+        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
 
         <h3>Select Gender</h3>
-
         <label>
           <input
             type="radio"
@@ -84,11 +92,24 @@ const Combo = () => {
         <div key={field.id}>
           <input 
             {...register(`hobbies.${index}.name`, { required: 'Hobby name required' })}
-            placeholder={`Hobby #${index + 1}`}
+            placeholder={`Hobby ${index + 1}`}
           />
           <button style={{marginLeft:20}} type="button" onClick={() => remove(index)}>Remove</button>
         </div>
       ))}
+
+        <input type="tel"
+        {
+          ...register("phone",{
+            required: "phone number is required",
+            pattern: {
+            
+            message: "Phone number must be exactly 10 digits"
+          }
+
+          })
+         }placeholder="Enter phone number"
+        />
 
         <input
           {...register("password", {
@@ -105,13 +126,10 @@ const Combo = () => {
           })}
           placeholder="Confirm Password"
         />
-        {/* {errors.Firstname && <p style={{ color: "red" }}>{errors.Firstname.message}</p>}
-        {errors.Lastname && <p style={{color:"red"}}> {errors.Lastname.message} </p>}
-        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
         {errors.confirmPassword && (
         <p style={{ color: "red" }}>{errors.confirmPassword.message}</p>
-        )} */}
-
+        )}
+       {errors.phone && <p style={{color:"red"}}> {errors.phone.message} </p>}
         {/* Display all errors in a list */}
         {Object.values(errors).length > 0 && (
           <ul style={{ color: "red" }}>
