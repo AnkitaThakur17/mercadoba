@@ -1,4 +1,4 @@
-
+import React from "react";
 import { useForm } from "react-hook-form";
 
 const Home = () => {
@@ -6,8 +6,16 @@ const Home = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, touchedFields },
-  } = useForm({ mode: "onTouched" }); 
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",           // validate when field is touched
+    reValidateMode: "onChange",  // re-validate on change
+    defaultValues: {
+      email: "ankita@gmail.com",
+      gender: "female",
+      phone: "9876543210",
+    },
+  });
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
@@ -17,11 +25,7 @@ const Home = () => {
   return (
     <section className="hero-section">
       <div className="hero-left">
-        <img
-          src="/sellerUser.webp"
-          alt="Seller Icon"
-          className="seller-icon"
-        />
+        <img src="/sellerUser.webp" alt="Seller Icon" className="seller-icon" />
         <h2>Want to become a seller?</h2>
         <button className="seller-signup-btn">Seller Signup</button>
       </div>
@@ -36,25 +40,21 @@ const Home = () => {
           placeholder="Enter Email"
           {...register("email", {
             required: "Email is required",
-            pattern: {
-              value: /^\S+@\S+\.\S+$/,
-              message: "Invalid email format",
-            },
+            pattern: { value: /^\S+@\S+\.\S+$/, message: "Invalid email format" },
             validate: (value) =>
               value.endsWith("@gmail.com") || "Only Gmail is allowed",
           })}
         />
-        {touchedFields.email && errors.email && (
-          <p style={{ color: "red" }}>{errors.email.message}</p>
-        )}
+        {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
 
         {/* Gender */}
-        <label>Gender Selection</label>
+        <label>Gender</label>
         <select {...register("gender")}>
           <option value="female">female</option>
           <option value="male">male</option>
           <option value="other">other</option>
         </select>
+        {errors.gender && <p style={{ color: "red" }}>{errors.gender.message}</p>}
 
         {/* Password */}
         <label>Password</label>
@@ -63,24 +63,15 @@ const Home = () => {
           placeholder="Enter Password"
           {...register("password", {
             required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Password must be at least 8 characters",
-            },
-            maxLength: {
-              value: 16,
-              message: "Password must not exceed 16 characters",
-            },
+            minLength: { value: 8, message: "Password must be at least 8 characters" },
+            maxLength: { value: 16, message: "Password must not exceed 16 characters" },
             pattern: {
               value: /^(?=.*[0-9])(?=.*[!@#$%^&*])/,
-              message:
-                "Password must contain at least one digit and one special character",
+              message: "Password must contain at least one digit and one special character",
             },
           })}
         />
-        {touchedFields.password && errors.password && (
-          <p style={{ color: "red" }}>{errors.password.message}</p>
-        )}
+        {errors.password && <p style={{ color: "red" }}>{errors.password.message}</p>}
 
         {/* Phone */}
         <label>Phone number</label>
@@ -89,24 +80,14 @@ const Home = () => {
           placeholder="Enter phone number"
           {...register("phone", {
             required: "Phone number is required",
-            minLength: {
-              value: 10,
-              message: "Phone must be 10 digits",
-            },
-            maxLength: {
-              value: 10,
-              message: "Phone must not exceed 10 digits",
-            },
+            minLength: { value: 10, message: "Phone must be 10 digits" },
+            maxLength: { value: 10, message: "Phone must not exceed 10 digits" },
           })}
           onInput={(e) => (e.target.value = e.target.value.replace(/[^0-9]/g, ""))}
         />
-        {touchedFields.phone && errors.phone && (
-          <p style={{ color: "red" }}>{errors.phone.message}</p>
-        )}
+        {errors.phone && <p style={{ color: "red" }}>{errors.phone.message}</p>}
 
-        <a href="" className="forgot-password">
-          Forgot Password?
-        </a>
+        <a href="" className="forgot-password">Forgot Password?</a>
         <button className="login-btn">Login</button>
 
         <p>Or login with</p>
