@@ -16,7 +16,7 @@ const Hero = () => {
       phone: "9876543210",
     },
   });
-
+   console.log("Current Errors:", errors); 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
     reset();
