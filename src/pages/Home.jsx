@@ -9,8 +9,8 @@ const Home = () => {
     setFocus,
     formState: { errors },
   } = useForm({
-    mode: "onTouched",           // validate when field is touched
-    reValidateMode: "onChange",  // re-validate on change
+    mode: "onTouched",  
+    reValidateMode: "onChange", 
     defaultValues: {
       email: "ankita@gmail.com",
       gender: "female",
